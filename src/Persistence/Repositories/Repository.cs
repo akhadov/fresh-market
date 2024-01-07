@@ -1,5 +1,4 @@
-﻿using Application.Common.Interfaces;
-using Application.Common.Interfaces.Persistence;
+﻿using Application.Common.Interfaces.Persistence;
 
 namespace Persistence.Repositories;
 
@@ -10,7 +9,7 @@ public class Repository<TEntity> : IRepository<TEntity>
 
     public Repository()
     {
-        
+
     }
 
     public Task CreateAsync(TEntity entity)

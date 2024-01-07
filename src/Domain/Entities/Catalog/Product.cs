@@ -1,5 +1,4 @@
 ﻿using Domain.Common;
-using System;
 namespace Domain.Entities.Catalog;
 
 public class Product : BaseEntity
