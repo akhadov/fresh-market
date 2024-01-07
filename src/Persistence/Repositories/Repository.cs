@@ -1,43 +1,40 @@
-﻿using Application.Common.Interfaces.Persistence;
+﻿using Application.Common.Interfaces;
+using Application.Common.Interfaces.Persistence;
 
 namespace Persistence.Repositories;
 
 public class Repository<TEntity> : IRepository<TEntity>
+    where TEntity : class
 {
+    private readonly ApplicationDbContext _context;
 
-    public Task<TEntity> GetAllAsync()
+    public Repository()
+    {
+        
+    }
+
+    public Task CreateAsync(TEntity entity)
     {
         throw new NotImplementedException();
     }
 
-    public Task<TEntity?> GetByIdAsync(long id)
+    public Task DeleteAsync(TEntity entity)
     {
         throw new NotImplementedException();
     }
 
-    public IQueryable<TEntity> GetQueryable()
+    public Task<IReadOnlyList<TEntity>> GetAsync()
     {
         throw new NotImplementedException();
     }
 
-    public void Insert(TEntity entity)
+    public Task<TEntity> GetByIdAsync(long id)
     {
         throw new NotImplementedException();
     }
 
-    public void Update(TEntity entity)
+    public Task UpdateAsync(TEntity entity)
     {
         throw new NotImplementedException();
     }
-
-    public void Delete(TEntity entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task SaveChangesAsync()
-    {
-        throw new NotImplementedException();
-    }
-    
 }

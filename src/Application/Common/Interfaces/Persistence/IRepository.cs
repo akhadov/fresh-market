@@ -1,19 +1,10 @@
-﻿using System;
-namespace Application.Common.Interfaces.Persistence;
+﻿namespace Application.Common.Interfaces.Persistence;
 
-public interface IRepository<TEntity>
+public interface IRepository<TEntity> where TEntity : class
 {
-    Task<TEntity> GetAllAsync();
-
-    Task<TEntity?> GetByIdAsync(long id);
-
-    IQueryable<TEntity> GetQueryable();
-
-    void Insert(TEntity entity);
-
-    void Update(TEntity entity);
-
-    void Delete(TEntity entity);
-
-    Task SaveChangesAsync();
+    Task<IReadOnlyList<TEntity>> GetAsync();
+    Task<TEntity> GetByIdAsync(long id);
+    Task CreateAsync(TEntity entity);
+    Task UpdateAsync(TEntity entity);
+    Task DeleteAsync(TEntity entity);
 }

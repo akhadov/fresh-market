@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Application.Common.Interfaces;
 
-internal interface IApplicationDbContext
+public interface IApplicationDbContext
 {
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+
 }
