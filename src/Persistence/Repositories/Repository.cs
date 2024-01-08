@@ -1,39 +1,43 @@
 ﻿using Application.Common.Interfaces.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Repositories;
 
 public class Repository<TEntity> : IRepository<TEntity>
     where TEntity : class
 {
-    private readonly ApplicationDbContext _context;
+    protected readonly ApplicationDbContext _context;
 
-    public Repository()
+    public Repository(ApplicationDbContext context)
     {
-
+        _context = context;
     }
 
-    public Task CreateAsync(TEntity entity)
+    public async Task CreateAsync(TEntity entity)
     {
-        throw new NotImplementedException();
+        await _context.Set<TEntity>().AddAsync(entity);
+        await _context.SaveChangesAsync();
     }
 
-    public Task DeleteAsync(TEntity entity)
+    public async Task DeleteAsync(TEntity entity)
     {
-        throw new NotImplementedException();
+        _context.Set<TEntity>().Remove(entity);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<IReadOnlyList<TEntity>> GetAsync()
+    public async Task<IReadOnlyList<TEntity>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _context.Set<TEntity>().ToListAsync();
     }
 
-    public Task<TEntity> GetByIdAsync(long id)
+    public async Task<TEntity?> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        return await _context.Set<TEntity>().FindAsync(id);
     }
 
-    public Task UpdateAsync(TEntity entity)
+    public async Task UpdateAsync(TEntity entity)
     {
-        throw new NotImplementedException();
+        _context.Entry(entity).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
     }
 }
