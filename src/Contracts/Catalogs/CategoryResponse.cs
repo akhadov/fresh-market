@@ -1,4 +1,4 @@
-﻿namespace Application.Catalog.Responses;
+﻿namespace Contracts.Catalogs;
 
 public class CategoryResponse
 {

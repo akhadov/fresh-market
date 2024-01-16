@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Catalog\Commands\" />
     <Folder Include="Catalog\Events\" />
     <Folder Include="Catalog\Queries\" />
     <Folder Include="Common\Behaviours\" />

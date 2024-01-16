@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Catalog;
 
-namespace Application.Catalog.Responses;
+namespace Contracts.Catalogs;
 
 public class ProductResponse
 {
