@@ -13,10 +13,11 @@ public class Repository<TEntity> : IRepository<TEntity>
         _context = context;
     }
 
-    public async Task CreateAsync(TEntity entity)
+    public async Task<TEntity> CreateAsync(TEntity entity)
     {
         await _context.Set<TEntity>().AddAsync(entity);
         await _context.SaveChangesAsync();
+        return entity;
     }
 
     public async Task DeleteAsync(TEntity entity)

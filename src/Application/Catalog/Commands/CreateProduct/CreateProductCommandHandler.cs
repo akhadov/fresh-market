@@ -1,5 +1,4 @@
-﻿using Application.Catalog.Mappers;
-using Application.Common.Exceptions;
+﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces.Messaging;
 using Application.Common.Interfaces.Persistence;
 using AutoMapper;
@@ -31,7 +30,9 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
             throw new BadRequestException("There is an issue with mapping while creating new product");
         }
 
-        await _productRepository.CreateAsync(productRequest);
+        var product = await _productRepository.CreateAsync(productRequest);
+
+        var productResponse = _mapper.Map<ProductResponse>(product);
 
         return productResponse;
 
