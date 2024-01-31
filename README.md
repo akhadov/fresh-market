@@ -1,6 +1,6 @@
 # .NET E-Commerce Reference Application - "Fresh Market"
 
-A reference .NET application implementing an eCommerce web site using a services-based architecture.
+A reference .NET application implementing an eCommerce web site using a clean architecture.
 
 ## Getting Started
 
