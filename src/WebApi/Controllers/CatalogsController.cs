@@ -1,8 +1,8 @@
-﻿using System.Net;
-using Application.Catalog.Commands.CreateProduct;
+﻿using Application.Catalog.Commands.CreateProduct;
 using Contracts.Catalogs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace WebApi.Controllers;
 
