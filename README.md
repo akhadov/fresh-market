@@ -1,4 +1,4 @@
-# .NET E-Commerce Reference Application - "Fresh Market"
+## .NET E-Commerce Reference Application - "Fresh Market"
 
 A reference .NET application implementing an eCommerce web site using a clean architecture.
 
