@@ -13,8 +13,13 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
-    <PackageReference Include="Duende.IdentityServer" Version="6.3.8" />
+    <PackageReference Include="Duende.IdentityServer" Version="7.0.0" />
+    <PackageReference Include="Duende.IdentityServer.AspNetIdentity" Version="7.0.0" />
+    <PackageReference Include="Duende.IdentityServer.EntityFramework" Version="7.0.0" />
+    <PackageReference Include="Duende.IdentityServer.EntityFramework.Storage" Version="7.0.0" />
+    <PackageReference Include="Duende.IdentityServer.Storage" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -22,6 +27,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Polly" Version="8.2.1" />
   </ItemGroup>
 
 </Project>

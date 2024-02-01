@@ -1,6 +1,7 @@
 using Application;
 using Infrastructure;
 using Persistence;
+using Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddIdentity(builder.Configuration);
 
 builder.Services.AddControllers();
 
