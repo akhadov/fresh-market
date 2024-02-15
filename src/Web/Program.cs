@@ -1,17 +1,17 @@
 using Application;
 using Infrastructure;
 using Persistence;
-using Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllersWithViews();
+
 
 // Add services to the container.
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddPersistence(builder.Configuration);
-builder.Services.AddIdentity(builder.Configuration);
-
-builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -27,7 +27,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(
