@@ -1,5 +1,4 @@
-﻿using Domain.Common;
-using Domain.Entities.Catalog;
+﻿using Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
@@ -19,18 +18,18 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
-    {
-        foreach (var entry in ChangeTracker.Entries<BaseAuditableEntity>())
-        {
-            entry.Entity.LastModified = DateTime.Now;
+    //public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    //{
+    //    foreach (var entry in ChangeTracker.Entries<BaseAuditableEntity>())
+    //    {
+    //        entry.Entity.LastModified = DateTime.Now;
 
-            if (entry.State == EntityState.Added)
-            {
-                entry.Entity.Created = DateTime.Now;
-            }
-        }
+    //        if (entry.State == EntityState.Added)
+    //        {
+    //            entry.Entity.Created = DateTime.Now;
+    //        }
+    //    }
 
-        return base.SaveChangesAsync(cancellationToken);
-    }
+    //    return base.SaveChangesAsync(cancellationToken);
+    //}
 }

@@ -1,8 +1,6 @@
-﻿using Domain.Common;
+﻿namespace Domain.Entities.Catalog;
 
-namespace Domain.Entities.Catalog;
-
-public class Category : BaseEntity
+public class Category
 {
     public string Name { get; set; }
 

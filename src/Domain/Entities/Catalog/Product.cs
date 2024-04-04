@@ -1,16 +1,17 @@
-﻿using Domain.Common;
-namespace Domain.Entities.Catalog;
+﻿namespace Domain.Entities.Catalog;
 
-public class Product : BaseEntity
+public class Product
 {
     public string Name { get; set; }
 
-    public string ImagePath { get; set; }
-
-    public string Title { get; set; }
+    public string Description { get; set; }
 
     public decimal Price { get; set; }
 
-    public long CategoryId { get; set; }
+    public string ImagePath { get; set; }
+
+    public int StockQuantity { get; set; }
+
+    public int CategoryId { get; set; }
     public virtual Category? Category { get; set; }
 }

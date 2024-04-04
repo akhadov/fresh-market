@@ -1,8 +1,6 @@
-﻿using Domain.Common;
+﻿namespace Domain.Entities.Blogs;
 
-namespace Domain.Entities.Blogs;
-
-public class BlogPost : BaseAuditableEntity
+public class BlogPost
 {
     public string Title { get; set; } = string.Empty;
 

@@ -1,8 +1,6 @@
-﻿using Domain.Common;
+﻿namespace Domain.Entities.Blogs;
 
-namespace Domain.Entities.Blogs;
-
-public class BlogPostTag : BaseEntity
+public class BlogPostTag
 {
     public string Name { get; set; }
 
