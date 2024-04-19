@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities.Catalog;
+﻿using Domain.Categories;
+
+namespace Domain.Entities.Catalog;
 
 public class Product
 {

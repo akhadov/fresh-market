@@ -1,8 +1,6 @@
-﻿using Domain.Entities.Buyers;
+﻿namespace Domain.Entities.Orders;
 
-namespace Domain.Entities.Orders;
-
-public class Order 
+public class Order
 {
     public Address Address { get; set; }
 

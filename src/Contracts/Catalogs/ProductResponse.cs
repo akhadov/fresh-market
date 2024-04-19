@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Catalog;
+﻿using Domain.Categories;
 
 namespace Contracts.Catalogs;
 

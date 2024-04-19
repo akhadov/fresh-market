@@ -1,7 +1,7 @@
 ﻿using Application.Catalog.Commands.CreateCategory;
 using AutoMapper;
 using Contracts.Catalogs;
-using Domain.Entities.Catalog;
+using Domain.Categories;
 
 namespace Application.Catalog.Mappers;
 

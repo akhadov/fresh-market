@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces.Messaging;
 using Contracts.Catalogs;
-using Domain.Entities.Catalog;
+using Domain.Categories;
 
 namespace Application.Catalog.Commands.CreateProduct;
 
