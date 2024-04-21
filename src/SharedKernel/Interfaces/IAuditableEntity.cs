@@ -1,4 +1,4 @@
-﻿namespace Domain.Common.Interfaces;
+﻿namespace SharedKernel.Interfaces;
 
 public interface IAuditableEntity
 {

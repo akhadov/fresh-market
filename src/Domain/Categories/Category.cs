@@ -1,4 +1,4 @@
-﻿using Domain.Common.Base;
+﻿using SharedKernel.Base;
 
 namespace Domain.Categories;
 
@@ -10,5 +10,5 @@ public class Category : AggregateRoot<CategoryId>
 
     private Category() { }
 
-    
+
 }

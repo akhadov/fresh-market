@@ -1,4 +1,4 @@
-﻿namespace Domain.Common.Entities;
+﻿namespace SharedKernel.Entities;
 
 public record Money(Currency Currency, decimal Amount)
 {

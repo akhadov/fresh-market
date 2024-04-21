@@ -1,6 +1,6 @@
-﻿using Domain.Common.Exceptions;
+﻿using SharedKernel.Exceptions;
 
-namespace Domain.Common.Entities;
+namespace SharedKernel.Entities;
 
 public record Currency
 {

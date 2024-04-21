@@ -1,7 +1,7 @@
-﻿using Domain.Common.Extensions;
+﻿using SharedKernel.Extensions;
 using System.Runtime.CompilerServices;
 
-namespace Domain.Common.Exceptions;
+namespace SharedKernel.Exceptions;
 
 internal static class Guard
 {

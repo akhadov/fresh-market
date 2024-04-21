@@ -1,4 +1,4 @@
-﻿namespace Domain.Common.Extensions;
+﻿namespace SharedKernel.Extensions;
 
 internal static class StringExtensions
 {

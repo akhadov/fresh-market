@@ -1,6 +1,6 @@
-﻿using Domain.Common.Base;
+﻿using SharedKernel.Base;
 
-namespace Domain.Common.Interfaces;
+namespace SharedKernel.Interfaces;
 
 public interface IDomainEvents
 {
