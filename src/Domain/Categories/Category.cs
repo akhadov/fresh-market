@@ -13,16 +13,17 @@ public class Category : AggregateRoot<CategoryId>
     public static Category Create(string name, string imagePath)
     {
         var category = new Category
-        { Id = new CategoryId(Guid.NewGuid()), 
-          Name = name,
-          ImagePath = imagePath 
+        {
+            Id = new CategoryId(Guid.NewGuid()),
+            Name = name,
+            ImagePath = imagePath
         };
 
         category.UpdateName(name);
 
         category.UpdateImagePath(imagePath);
 
-        category.AddDomainEvent(new CategoryCreatedDomainEvent(category.Id, category.Name, category.ImagePath));
+        category.AddDomainEvent(CategoryCreatedDomainEvent.Create(category));
 
         return category;
     }

@@ -1,5 +1,4 @@
 ﻿using Application.Common.Interfaces.Persistence;
-using Domain.Entities.Catalog;
 
 namespace Persistence.Repositories;
 

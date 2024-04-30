@@ -1,6 +1,4 @@
-﻿using Domain.Entities.Catalog;
-
-namespace Domain.Entities.Basket;
+﻿namespace Domain.Entities.Basket;
 
 public class ShoppingCartItem
 {

@@ -1,7 +1,6 @@
 ﻿using Application.Catalog.Commands.CreateProduct;
 using AutoMapper;
 using Contracts.Catalogs;
-using Domain.Entities.Catalog;
 
 namespace Application.Catalog.Mappers;
 

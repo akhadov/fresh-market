@@ -3,7 +3,6 @@ using Application.Common.Interfaces.Messaging;
 using Application.Common.Interfaces.Persistence;
 using AutoMapper;
 using Contracts.Catalogs;
-using Domain.Entities.Catalog;
 
 namespace Application.Catalog.Commands.CreateProduct;
 

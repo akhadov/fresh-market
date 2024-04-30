@@ -1,6 +1,4 @@
-﻿using Domain.Entities.Catalog;
-
-namespace Domain.Entities.Orders;
+﻿namespace Domain.Entities.Orders;
 
 public class OrderItem
 {

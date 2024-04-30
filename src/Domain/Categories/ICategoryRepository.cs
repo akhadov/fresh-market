@@ -1,6 +1,6 @@
-﻿namespace Domain.Categories;
-
-public interface ICategoryRepository
+﻿namespace Domain.Categories
 {
-    bool CategoryExists(string categoryName);
+    internal interface ICategoryRepository
+    {
+    }
 }

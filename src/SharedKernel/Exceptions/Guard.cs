@@ -3,9 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace SharedKernel.Exceptions;
 
-internal static class Guard
+public static class Guard
 {
-    internal static class Against
+    public static class Against
     {
         public static void Condition(bool condition, string message)
         {

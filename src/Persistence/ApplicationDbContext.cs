@@ -1,5 +1,4 @@
 ﻿using Domain.Categories;
-using Domain.Entities.Catalog;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
