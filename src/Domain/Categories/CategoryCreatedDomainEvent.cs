@@ -2,6 +2,4 @@
 
 namespace Domain.Categories;
 
-public record CategoryCreatedDomainEvent(CategoryId CategoryId, string Name) : DomainEvent
-{
-}
+public record CategoryCreatedDomainEvent(CategoryId CategoryId, string Name, string ImagePath) : DomainEvent;

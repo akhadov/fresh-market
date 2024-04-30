@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SharedKernel.Errors;
+﻿namespace SharedKernel.Errors;
 
 public record Error
 {
@@ -25,7 +19,7 @@ public record Error
 
     public string Description { get; }
 
-    public ErrorType Type { get;}
+    public ErrorType Type { get; }
 
     public static Error Failure(string code, string description) =>
         new(code, description, ErrorType.Failure);
