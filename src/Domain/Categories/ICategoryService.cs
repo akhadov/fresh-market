@@ -2,6 +2,5 @@
 
 public interface ICategoryService
 {
-    bool CategoryExists(string categoryName);
 }
 
