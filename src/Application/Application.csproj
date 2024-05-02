@@ -20,8 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Catalog\Events\" />
-    <Folder Include="Catalog\Queries\" />
     <Folder Include="Common\Behaviours\" />
     <Folder Include="Common\Security\" />
   </ItemGroup>

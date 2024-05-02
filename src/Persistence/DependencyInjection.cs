@@ -14,8 +14,6 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("FreshMarketDbConnectionString")));
 
         services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        services.AddScoped<IProductRepository, ProductRepository>();
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         return services;
     }
