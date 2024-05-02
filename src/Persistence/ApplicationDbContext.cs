@@ -1,5 +1,4 @@
-﻿using Domain.Categories;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
 

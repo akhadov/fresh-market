@@ -4,7 +4,6 @@ using SharedKernel;
 using SharedKernel.Base;
 using SharedKernel.Entities;
 using SharedKernel.Exceptions;
-using System;
 
 namespace Domain.Orders;
 
