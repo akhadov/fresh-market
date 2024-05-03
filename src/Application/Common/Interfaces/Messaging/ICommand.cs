@@ -1,7 +1,16 @@
 ﻿using MediatR;
+using SharedKernel.Results;
 
 namespace Application.Common.Interfaces.Messaging;
 
-public interface ICommand : IRequest<long> { }
+public interface ICommand : IRequest<Result>, IBaseCommand
+{
+}
 
-public interface ICommand<out TResponse> : IRequest<TResponse> { }
+public interface ICommand<TResponse> : IRequest<Result<TResponse>>, IBaseCommand
+{
+}
+
+public interface IBaseCommand
+{
+}
