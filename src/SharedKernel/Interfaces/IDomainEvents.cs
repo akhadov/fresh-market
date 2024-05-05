@@ -10,5 +10,5 @@ public interface IDomainEvents
 
     void RemoveDomainEvent(DomainEvent domainEvent);
 
-    void ClearDomainEvent();
+    void ClearDomainEvents();
 }

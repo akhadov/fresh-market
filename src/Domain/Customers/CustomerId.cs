@@ -1,3 +1,3 @@
 ﻿namespace Domain.Customers;
 
-public record CustomerId(Guid Value);
+public readonly record struct CustomerId(Guid Value);

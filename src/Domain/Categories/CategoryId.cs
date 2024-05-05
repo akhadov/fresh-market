@@ -1,3 +1,3 @@
 ﻿namespace Domain.Categories;
 
-public record CategoryId(Guid Value);
+public readonly record struct CategoryId(Guid Value);

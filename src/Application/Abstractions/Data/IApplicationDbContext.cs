@@ -1,7 +1,9 @@
-﻿namespace Application.Abstractions.Data;
+﻿using Domain.Categories;
+using Microsoft.EntityFrameworkCore;
+
+namespace Application.Abstractions.Data;
 
 public interface IApplicationDbContext
 {
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-
+    public DbSet<Category> Categories { get; set; }
 }

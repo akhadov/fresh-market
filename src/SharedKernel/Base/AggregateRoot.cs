@@ -14,6 +14,6 @@ public abstract class AggregateRoot<TId> : Entity<TId>, IDomainEvents
 
     public void RemoveDomainEvent(DomainEvent domainEvent) => _domainEvents.Remove(domainEvent);
 
-    public void ClearDomainEvent() => _domainEvents.Clear();
+    public void ClearDomainEvents() => _domainEvents.Clear();
 
 }

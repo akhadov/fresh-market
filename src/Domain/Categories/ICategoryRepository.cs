@@ -1,6 +1,5 @@
-﻿namespace Domain.Categories
+﻿namespace Domain.Categories;
+
+public interface ICategoryRepository
 {
-    internal interface ICategoryRepository
-    {
-    }
 }
