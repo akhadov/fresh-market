@@ -1,4 +1,4 @@
-﻿namespace Application.Common.Exceptions;
+﻿namespace Application.Abstractions.Exceptions;
 
 public class NotFoundException : Exception
 {

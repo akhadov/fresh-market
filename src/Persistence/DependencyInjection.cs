@@ -1,4 +1,4 @@
-﻿using Application.Common.Interfaces.Persistence;
+﻿using Application.Abstractions.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

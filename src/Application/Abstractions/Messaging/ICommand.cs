@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SharedKernel.Results;
 
-namespace Application.Common.Interfaces.Messaging;
+namespace Application.Abstractions.Messaging;
 
 public interface ICommand : IRequest<Result>, IBaseCommand
 {

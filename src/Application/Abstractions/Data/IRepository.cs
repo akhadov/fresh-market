@@ -1,4 +1,4 @@
-﻿namespace Application.Common.Interfaces.Persistence;
+﻿namespace Application.Abstractions.Data;
 
 public interface IRepository<TEntity> where TEntity : class
 {
