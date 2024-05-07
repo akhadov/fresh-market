@@ -1,14 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Application.Abstractions.Data;
 using Microsoft.EntityFrameworkCore;
-using SharedKernel.Interfaces;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Abstractions.Data;
+using SharedKernel.Interfaces;
 
 namespace Persistence.Interceptors;
 

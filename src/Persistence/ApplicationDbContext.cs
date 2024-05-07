@@ -1,9 +1,7 @@
 ﻿using Application.Abstractions.Data;
 using Domain.Categories;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Interceptors;
-using SharedKernel.Base;
 
 namespace Persistence;
 

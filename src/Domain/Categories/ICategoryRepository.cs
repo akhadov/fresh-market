@@ -1,5 +1,7 @@
-﻿namespace Domain.Categories;
+﻿using SharedKernel;
 
-public interface ICategoryRepository
+namespace Domain.Categories;
+
+public interface ICategoryRepository : IRepository<Category, CategoryId>
 {
 }

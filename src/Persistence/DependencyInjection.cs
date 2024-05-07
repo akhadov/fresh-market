@@ -1,9 +1,11 @@
 ﻿using Application.Abstractions.Data;
+using Domain.Categories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Interceptors;
 using Persistence.Repositories;
+using SharedKernel;
 
 namespace Persistence;
 
@@ -25,7 +27,9 @@ public static class DependencyInjection
 
         services.AddScoped<DispatchDomainEventsInterceptor>();
 
-        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         return services;
     }

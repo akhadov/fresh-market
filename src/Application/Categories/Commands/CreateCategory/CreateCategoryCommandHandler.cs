@@ -1,12 +1,25 @@
-﻿using Application.Abstractions.Messaging;
+﻿using Application.Abstractions.Data;
+using Application.Abstractions.Messaging;
+using Domain.Categories;
 using SharedKernel.Results;
 
 namespace Application.Categories.Commands.CreateCategory;
 
-internal sealed class CreateCategoryCommandHandler : ICommandHandler<CreateCategoryCommand, Guid>
+internal sealed class CreateCategoryCommandHandler(
+    ICategoryRepository categoryRepository,
+    IUnitOfWork unitOfWork) : ICommandHandler<CreateCategoryCommand, Guid>
 {
-    public Task<Result<Guid>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(
+        CreateCategoryCommand request,
+        CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var category = Category.Create(request.Name, request.ImagePath);
+
+        await categoryRepository.AddAsync(category);
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return category.Id.Value;
+
     }
 }

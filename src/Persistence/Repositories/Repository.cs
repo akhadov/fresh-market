@@ -1,10 +1,12 @@
-﻿using Application.Abstractions.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using SharedKernel;
+using SharedKernel.Base;
 
 namespace Persistence.Repositories;
 
-public class Repository<TEntity> : IRepository<TEntity>
-    where TEntity : class
+public class Repository<TEntity, TEntityId> : IRepository<TEntity, TEntityId>
+    where TEntity : AggregateRoot<TEntityId>
+    where TEntityId : class
 {
     protected readonly ApplicationDbContext _context;
 
@@ -13,17 +15,16 @@ public class Repository<TEntity> : IRepository<TEntity>
         _context = context;
     }
 
-    public async Task<TEntity> CreateAsync(TEntity entity)
+    public async Task<TEntity> AddAsync(TEntity entity)
     {
         await _context.Set<TEntity>().AddAsync(entity);
-        await _context.SaveChangesAsync();
         return entity;
     }
 
-    public async Task DeleteAsync(TEntity entity)
+    public async Task RemoveAsync(TEntity entity)
     {
         _context.Set<TEntity>().Remove(entity);
-        await _context.SaveChangesAsync();
+        await Task.CompletedTask;
     }
 
     public async Task<IReadOnlyList<TEntity>> GetAllAsync()
@@ -31,14 +32,15 @@ public class Repository<TEntity> : IRepository<TEntity>
         return await _context.Set<TEntity>().ToListAsync();
     }
 
-    public async Task<TEntity?> GetByIdAsync(long id)
+    public virtual async Task<TEntity?> GetByIdAsync(TEntityId id)
     {
-        return await _context.Set<TEntity>().FindAsync(id);
+        return await _context.Set<TEntity>()
+            .SingleOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task UpdateAsync(TEntity entity)
     {
         _context.Entry(entity).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
+        await Task.CompletedTask;
     }
 }

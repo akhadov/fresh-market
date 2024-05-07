@@ -2,4 +2,4 @@
 
 namespace Application.Categories.Commands.CreateCategory;
 
-public sealed record CreateCategoryCommand(string Name) : ICommand<Guid>;
+public sealed record CreateCategoryCommand(string Name, string ImagePath) : ICommand<Guid>;
