@@ -1,6 +1,7 @@
 using Application;
 using Infrastructure;
 using Persistence;
+using WebApi.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapCategoryEndpoints();
 
 app.Run();
