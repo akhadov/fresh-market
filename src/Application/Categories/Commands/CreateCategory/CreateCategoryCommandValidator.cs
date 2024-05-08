@@ -13,5 +13,5 @@ internal sealed class CreateCategoryCommandValidator : AbstractValidator<CreateC
     {
         RuleFor(x => x.Name).NotEmpty();
     }
-    
+
 }

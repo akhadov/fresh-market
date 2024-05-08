@@ -23,7 +23,7 @@ public class Category : AggregateRoot<CategoryId>
 
         category.UpdateImagePath(imagePath);
 
-        category.AddDomainEvent(CategoryCreatedDomainEvent.Create(category));
+        category.AddDomainEvent(CategoryCreatedEvent.Create(category));
 
         return category;
     }

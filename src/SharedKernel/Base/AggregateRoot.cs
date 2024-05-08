@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SharedKernel.Base;
 
-public abstract class AggregateRoot<TId> : Entity<TId>, IDomainEvents
+public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
 {
-    private readonly List<DomainEvent> _domainEvents = new();
+    private readonly List<DomainEvent> _domainEvents = [];
 
     [NotMapped]
     public IReadOnlyList<DomainEvent> DomainEvents => _domainEvents.AsReadOnly();
@@ -15,5 +15,4 @@ public abstract class AggregateRoot<TId> : Entity<TId>, IDomainEvents
     public void RemoveDomainEvent(DomainEvent domainEvent) => _domainEvents.Remove(domainEvent);
 
     public void ClearDomainEvents() => _domainEvents.Clear();
-
 }

@@ -7,30 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Common\Behaviours\**" />
-    <Compile Remove="Common\Security\**" />
-    <EmbeddedResource Remove="Common\Behaviours\**" />
-    <EmbeddedResource Remove="Common\Security\**" />
-    <None Remove="Common\Behaviours\**" />
-    <None Remove="Common\Security\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="FluentValidation" Version="11.9.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.1" />
     <PackageReference Include="MediatR" Version="12.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Abstractions\Behaviours\" />
-    <Folder Include="Categories\Queries\" />
+    <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
   </ItemGroup>
 
 </Project>

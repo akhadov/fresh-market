@@ -1,13 +1,13 @@
 ﻿using Application.Abstractions.Data;
 using Application.Abstractions.Messaging;
 using Domain.Categories;
-using SharedKernel.Results;
+using SharedKernel;
 
 namespace Application.Categories.Commands.CreateCategory;
 
 internal sealed class CreateCategoryCommandHandler(
-    ICategoryRepository categoryRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<CreateCategoryCommand, Guid>
+ICategoryRepository categoryRepository,
+IUnitOfWork unitOfWork) : ICommandHandler<CreateCategoryCommand, Guid>
 {
     public async Task<Result<Guid>> Handle(
         CreateCategoryCommand request,

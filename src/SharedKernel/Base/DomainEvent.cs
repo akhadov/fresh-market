@@ -2,4 +2,4 @@
 
 namespace SharedKernel.Base;
 
-public record DomainEvent : INotification { }
+public record DomainEvent : INotification;

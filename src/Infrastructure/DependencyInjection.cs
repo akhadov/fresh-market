@@ -1,8 +1,13 @@
-﻿using Application.Common.Interfaces.Email;
-using Application.Common.Models.Email;
-using Infrastructure.EmailService;
+﻿using Application.Abstractions.Data;
+using Domain.Categories;
+using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
+using SharedKernel;
+using SharedKernel.Interfaces;
 
 namespace Infrastructure;
 
@@ -10,8 +15,28 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
-        services.AddTransient<IEmailSender, EmailSender>();
+        services.AddMediatR(config =>
+            config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
+
+        string? connectionString = configuration.GetConnectionString("Database");
+        Ensure.NotNullOrEmpty(connectionString);
+
+        services.AddSingleton(_ =>
+            new DbConnectionFactory(new NpgsqlDataSourceBuilder(connectionString).Build()));
+
+        services.AddDbContext<ApplicationDbContext>(
+            options => options
+                .UseNpgsql(connectionString)
+                .UseSnakeCaseNamingConvention()
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+
+        services.AddScoped<IApplicationDbContext>(sp => sp.GetRequiredService<ApplicationDbContext>());
+
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
+
+        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         return services;
     }

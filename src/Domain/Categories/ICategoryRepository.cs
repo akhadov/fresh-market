@@ -1,4 +1,4 @@
-﻿using SharedKernel;
+﻿using SharedKernel.Interfaces;
 
 namespace Domain.Categories;
 

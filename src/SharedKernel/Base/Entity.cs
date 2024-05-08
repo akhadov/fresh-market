@@ -1,24 +1,6 @@
-﻿using SharedKernel.Interfaces;
+﻿namespace SharedKernel.Base;
 
-namespace SharedKernel.Base;
-
-public class Entity<TId> : IAuditableEntity
+public abstract class Entity<TId> : AuditableEntity
 {
-    public required TId Id { get; init; }
-    public DateTimeOffset CreatedAt { get; private set; }
-    public string? CreatedBy { get; private set; }
-    public DateTimeOffset? UpdatedAt { get; private set; }
-    public string? UpdatedBy { get; private set; }
-
-    public void Created(DateTimeOffset dateTime, string? user)
-    {
-        CreatedAt = dateTime;
-        CreatedBy = user;
-    }
-
-    public void Updated(DateTimeOffset dateTime, string? user)
-    {
-        UpdatedAt = dateTime;
-        UpdatedBy = user;
-    }
+    public TId Id { get; set; } = default!;
 }
