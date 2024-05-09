@@ -32,7 +32,7 @@ public class Repository<TEntity, TEntityId> : IRepository<TEntity, TEntityId>
         return await _context.Set<TEntity>().ToListAsync();
     }
 
-    public virtual async Task<TEntity?> GetByIdAsync(TEntityId id)
+    public async virtual Task<TEntity?> GetByIdAsync(TEntityId id)
     {
         return await _context.Set<TEntity>()
             .SingleOrDefaultAsync(x => x.Id == id);

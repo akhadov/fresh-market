@@ -1,4 +1,6 @@
 ﻿using Application.Categories.Commands.CreateCategory;
+using Application.Categories.Commands.DeleteCategory;
+using Domain.Categories;
 using MediatR;
 using SharedKernel;
 using Web.Api.Extensions;
@@ -23,6 +25,18 @@ public static class CategoryEnspoints
 
             return result.Match(Results.Ok, CustomResults.Problem);
 
+        });
+
+        routes.MapDelete("api/categories/{categoryId}", async (
+                Guid categoryId, // Change the parameter type to Guid
+                ISender sender,
+                CancellationToken cancellationToken) =>
+        {
+            var query = new DeleteCategoryCommand(new CategoryId(categoryId)); // Ensure categoryId is of type Guid
+
+            Result result = await sender.Send(query, cancellationToken);
+
+            return result.Match(Results.NoContent, CustomResults.Problem);
         });
     }
 }

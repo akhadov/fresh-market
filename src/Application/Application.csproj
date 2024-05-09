@@ -19,4 +19,9 @@
     <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Categories\Commands\UpdateCategory\" />
+    <Folder Include="Categories\Queries\" />
+  </ItemGroup>
+
 </Project>
