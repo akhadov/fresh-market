@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Categories\Commands\UpdateCategory\" />
     <Folder Include="Categories\Queries\" />
   </ItemGroup>
 
