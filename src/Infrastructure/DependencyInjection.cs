@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Data;
 using Domain.Categories;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Interceptors;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +16,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddScoped<EntitySaveChangesInterceptor>();
+        services.AddScoped<DispatchDomainEventsInterceptor>();
+
         services.AddMediatR(config =>
             config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
@@ -37,6 +41,8 @@ public static class DependencyInjection
         services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+        services.AddSingleton(TimeProvider.System);
 
         return services;
     }

@@ -1,13 +1,12 @@
 ﻿using Application.Categories.Commands.CreateCategory;
-using Application.Categories.Commands.UpdateCategory;
 using Application.Categories.Commands.DeleteCategory;
 using Application.Categories.Commands.UpdateCategory;
+using Application.Categories.Queries.GetById;
 using Domain.Categories;
 using MediatR;
 using SharedKernel;
 using Web.Api.Extensions;
 using Web.Api.Infrastructure;
-using Application.Categories.Queries.GetById;
 
 namespace Web.Api.Endpoints;
 

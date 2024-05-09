@@ -3,11 +3,6 @@ using Application.Abstractions.Messaging;
 using Domain.Categories;
 using MediatR;
 using SharedKernel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Categories.Commands.UpdateCategory;
 
@@ -20,7 +15,7 @@ internal sealed class UpdateCategoryCommandHandler(
     {
         var category = await categoryRepository.GetByIdAsync(request.CategoryId);
 
-        if (category is null) 
+        if (category is null)
         {
             return Result.Failure<Guid>(CategoryErrors.NotFound(request.CategoryId));
         }

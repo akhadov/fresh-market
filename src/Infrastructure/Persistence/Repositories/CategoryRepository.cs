@@ -1,6 +1,4 @@
 ﻿using Domain.Categories;
-using Microsoft.EntityFrameworkCore;
-using SharedKernel.Base;
 
 namespace Infrastructure.Persistence.Repositories;
 

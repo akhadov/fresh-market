@@ -1,5 +1,6 @@
 using Application;
 using Infrastructure;
+using Web.Api;
 using Web.Api.Endpoints;
 using Web.Api.Extensions;
 
@@ -11,7 +12,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddApplication()
-    .AddInfrastructure(builder.Configuration);
+    .AddInfrastructure(builder.Configuration)
+    .AddWebApi(builder.Configuration);
 
 builder.Services.AddHttpContextAccessor();
 
