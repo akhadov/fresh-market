@@ -7,6 +7,7 @@ using MediatR;
 using SharedKernel;
 using Web.Api.Extensions;
 using Web.Api.Infrastructure;
+using Application.Categories.Queries.GetById;
 
 namespace Web.Api.Endpoints;
 
@@ -55,6 +56,18 @@ public static class CategoryEnspoints
             Result result = await sender.Send(command, cancellationToken);
 
             return result.Match(Results.NoContent, CustomResults.Problem);
+        });
+
+        routes.MapGet("api/users/{categoryId}", async (
+            Guid categoryId,
+            ISender sender,
+            CancellationToken cancellationToken) =>
+        {
+            var query = new GetCategoryByIdQuery(new CategoryId(categoryId));
+
+            Result<CategoryResponse> result = await sender.Send(query, cancellationToken);
+
+            return result.Match(Results.Ok, CustomResults.Problem);
         });
     }
 }
