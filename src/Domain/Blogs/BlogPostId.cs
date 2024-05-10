@@ -1,3 +1,3 @@
 ﻿namespace Domain.Blogs;
 
-public readonly record struct BlogPostId(Guid Value);
+public record BlogPostId(Guid Value);

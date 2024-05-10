@@ -1,3 +1,3 @@
 ﻿namespace Domain.Orders;
 
-public readonly record struct OrderId(Guid Value);
+public record OrderId(Guid Value);

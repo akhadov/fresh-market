@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions.Data;
 using Domain.Categories;
+using Domain.Products;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Interceptors;
 using Infrastructure.Persistence.Repositories;
@@ -41,6 +42,8 @@ public static class DependencyInjection
         services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+
 
         services.AddSingleton(TimeProvider.System);
 
