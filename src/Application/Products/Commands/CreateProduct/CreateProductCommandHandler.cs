@@ -3,7 +3,6 @@ using Application.Abstractions.Messaging;
 using Domain.Categories;
 using Domain.Products;
 using SharedKernel;
-using System.Diagnostics;
 
 namespace Application.Products.Commands.CreateProduct;
 
@@ -15,7 +14,7 @@ internal sealed class CreateProductCommandHandler(
     public async Task<Result<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
         var categoryId = new CategoryId(request.CategoryId);
-        
+
         var price = new Money(request.Currency, request.Amount);
 
         var sku = Sku.Create(request.Sku);

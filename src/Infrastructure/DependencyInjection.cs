@@ -1,5 +1,7 @@
 ﻿using Application.Abstractions.Data;
+using Domain.Blogs;
 using Domain.Categories;
+using Domain.Orders;
 using Domain.Products;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Interceptors;
@@ -43,6 +45,11 @@ public static class DependencyInjection
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IBlogPostTagRepository, BlogPostTagRepository>();
+        services.AddScoped<IBlogPostRepository, BlogPostRepository>();
+        services.AddScoped<IBlogPostCommentRepository, BlogPostCommentRepository>();
+
 
 
         services.AddSingleton(TimeProvider.System);
