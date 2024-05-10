@@ -7,6 +7,8 @@ public class BlogPostComment : AggregateRoot<BlogPostCommentId>
 {
     public CustomerId CustomerId { get; private set; }
 
+    public BlogPostId BlogPostId { get; private set; }
+
     public string CommentText { get; private set; } = string.Empty;
 
     private BlogPostComment() { }
