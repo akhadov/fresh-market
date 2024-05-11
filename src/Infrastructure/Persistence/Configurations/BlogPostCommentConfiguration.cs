@@ -9,18 +9,22 @@ internal sealed class BlogPostCommentConfiguration : IEntityTypeConfiguration<Bl
 {
     public void Configure(EntityTypeBuilder<BlogPostComment> builder)
     {
-        builder.HasKey(p => p.Id);
+        builder.HasKey(c => c.Id);
 
-        builder.Property(p => p.Id)
-            .IsRequired()
-            .HasConversion(blogPostCommentId => blogPostCommentId.Value, value => new BlogPostCommentId(value));
+        builder.Property(c => c.Id).HasConversion(
+            blogPostCommentId => blogPostCommentId.Value,
+            value => new BlogPostCommentId(value));
+
+        builder.HasOne<BlogPost>()
+            .WithMany()
+            .HasForeignKey(x => x.BlogPostId);
 
         builder.HasOne<Customer>()
             .WithMany()
-            .HasForeignKey(p => p.CustomerId)
+            .HasForeignKey(x => x.CustomerId);
+
+        builder.Property(x => x.CommentText)
             .IsRequired();
 
-        builder.Property(p => p.CommentText)
-            .IsRequired();
     }
 }

@@ -5,9 +5,9 @@ namespace Domain.Blogs;
 
 public class BlogPost : AggregateRoot<BlogPostId>
 {
-    public List<BlogPostComment> BlogPostComments { get; private set; } = new();
+    private readonly List<BlogPostComment> _blogPostComments = new();
 
-    public List<BlogPostTag> BlogPostTags { get; private set; } = new();
+    public IReadOnlyList<BlogPostComment> BlogPostComments => _blogPostComments;
 
     public CustomerId CustomerId { get; private set; }
 

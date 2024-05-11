@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Data;
 using Domain.Blogs;
 using Domain.Categories;
+using Domain.Customers;
 using Domain.Orders;
 using Domain.Products;
 using Infrastructure.Persistence.Interceptors;
@@ -22,12 +23,12 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
     }
 
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Customer> Customers { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<LineItem> LineItems { get; set; }
     public DbSet<BlogPost> BlogPosts { get; set; }
     public DbSet<BlogPostComment> BlogPostComments { get; set; }
-    public DbSet<BlogPostTag> BlogPostTags { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

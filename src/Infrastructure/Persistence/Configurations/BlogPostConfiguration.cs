@@ -9,31 +9,19 @@ internal sealed class BlogPostConfiguration : IEntityTypeConfiguration<BlogPost>
 {
     public void Configure(EntityTypeBuilder<BlogPost> builder)
     {
-        builder.HasKey(p => p.Id);
+        builder.HasKey(b => b.Id);
 
-        builder.Property(p => p.Id)
-            .IsRequired()
-            .HasConversion(
-                id => id.Value,
-                value => new BlogPostId(value));
-
-        builder.Property(p => p.Title);
-        builder.Property(p => p.ImagePath);
-        builder.Property(p => p.Body);
-        builder.Property(p => p.BodyOverview);
+        builder.Property(b => b.Id).HasConversion(
+            blogPostId => blogPostId.Value,
+            value => new BlogPostId(value));
 
         builder.HasOne<Customer>()
             .WithMany()
-            .HasForeignKey(p => p.CustomerId)
-            .IsRequired();
+            .HasForeignKey(x => x.CustomerId);
 
-        builder.HasOne<BlogPostTag>()
-            .WithMany()
-            .HasForeignKey(p => p.CustomerId)
-            .IsRequired();
-
-        builder.HasMany(p => p.BlogPostComments)
+        builder.HasMany(x => x.BlogPostComments)
             .WithOne()
-            .HasForeignKey(p => p.BlogPostId);
+            .HasForeignKey(x => x.BlogPostId);
+
     }
 }

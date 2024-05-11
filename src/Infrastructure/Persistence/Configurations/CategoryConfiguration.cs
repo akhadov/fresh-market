@@ -10,9 +10,9 @@ internal sealed class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         builder.HasKey(p => p.Id);
 
-        builder.Property(p => p.Id)
-            .IsRequired()
-            .HasConversion(categoryId => categoryId.Value, value => new CategoryId(value));
+        builder.Property(p => p.Id).HasConversion(
+            categoryId => categoryId.Value,
+            value => new CategoryId(value));
 
         builder.Property(p => p.Name)
             .HasMaxLength(50);

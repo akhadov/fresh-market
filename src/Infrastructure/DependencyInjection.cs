@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Data;
 using Domain.Blogs;
 using Domain.Categories;
+using Domain.Customers;
 using Domain.Orders;
 using Domain.Products;
 using Infrastructure.Persistence;
@@ -44,9 +45,9 @@ public static class DependencyInjection
         services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 
         services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
-        services.AddScoped<IBlogPostTagRepository, BlogPostTagRepository>();
         services.AddScoped<IBlogPostRepository, BlogPostRepository>();
         services.AddScoped<IBlogPostCommentRepository, BlogPostCommentRepository>();
 

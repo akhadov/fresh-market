@@ -13,6 +13,8 @@ public class Order : AggregateRoot<OrderId>
 
     public required CustomerId CustomerId { get; init; }
 
+    public Customer? Customer { get; set; }
+
     public OrderStatus Status { get; private set; }
 
     public DateTimeOffset ShippingDate { get; private set; }
