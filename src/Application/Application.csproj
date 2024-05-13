@@ -19,4 +19,8 @@
     <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Products\Queries\" />
+  </ItemGroup>
+
 </Project>
