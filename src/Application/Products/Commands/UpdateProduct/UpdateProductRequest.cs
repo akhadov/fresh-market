@@ -1,6 +1,4 @@
-﻿namespace Application.Products.Commands.UpdateProduct
-{
-    internal class UpdateProductRequest
-    {
-    }
-}
+﻿namespace Application.Products.Commands.UpdateProduct;
+
+public sealed record UpdateProductRequest(
+    string Name, string Sku, decimal Amount, string Currency, Guid CategoryId);

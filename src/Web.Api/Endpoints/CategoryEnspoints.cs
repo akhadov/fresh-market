@@ -29,16 +29,16 @@ public static class CategoryEnspoints
 
         });
 
-        routes.MapDelete("api/categories/{categoryId}", async (
-                Guid categoryId, // Change the parameter type to Guid
-                ISender sender,
-                CancellationToken cancellationToken) =>
+        routes.MapGet("api/users/{categoryId}", async (
+            Guid categoryId,
+            ISender sender,
+            CancellationToken cancellationToken) =>
         {
-            var query = new DeleteCategoryCommand(new CategoryId(categoryId)); // Ensure categoryId is of type Guid
+            var query = new GetCategoryByIdQuery(new CategoryId(categoryId));
 
-            Result result = await sender.Send(query, cancellationToken);
+            Result<CategoryResponse> result = await sender.Send(query, cancellationToken);
 
-            return result.Match(Results.NoContent, CustomResults.Problem);
+            return result.Match(Results.Ok, CustomResults.Problem);
         });
 
         routes.MapPut("api/categories/{categoryId}", async (
@@ -57,16 +57,17 @@ public static class CategoryEnspoints
             return result.Match(Results.NoContent, CustomResults.Problem);
         });
 
-        routes.MapGet("api/users/{categoryId}", async (
-            Guid categoryId,
-            ISender sender,
-            CancellationToken cancellationToken) =>
+        routes.MapDelete("api/categories/{categoryId}", async (
+                Guid categoryId, // Change the parameter type to Guid
+                ISender sender,
+                CancellationToken cancellationToken) =>
         {
-            var query = new GetCategoryByIdQuery(new CategoryId(categoryId));
+            var query = new DeleteCategoryCommand(new CategoryId(categoryId)); // Ensure categoryId is of type Guid
 
-            Result<CategoryResponse> result = await sender.Send(query, cancellationToken);
+            Result result = await sender.Send(query, cancellationToken);
 
-            return result.Match(Results.Ok, CustomResults.Problem);
+            return result.Match(Results.NoContent, CustomResults.Problem);
         });
+
     }
 }

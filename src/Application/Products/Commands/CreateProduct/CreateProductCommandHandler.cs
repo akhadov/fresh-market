@@ -8,7 +8,6 @@ namespace Application.Products.Commands.CreateProduct;
 
 internal sealed class CreateProductCommandHandler(
     IProductRepository productRepository,
-    ICategoryRepository categoryRepository,
     IUnitOfWork unitOfWork) : ICommandHandler<CreateProductCommand, Guid>
 {
     public async Task<Result<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
