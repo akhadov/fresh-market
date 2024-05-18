@@ -37,7 +37,7 @@ public class Order : AggregateRoot<OrderId>
     public LineItem AddLineItem(ProductId productId, Money price, int quantity)
     {
         var lineItem = LineItem.Create(Id, productId, price, quantity);
-        AddDomainEvent(new LineItemCreatedEvent(lineItem.Id, lineItem.OrderId));
+        AddDomainEvent(new LineItemAddedEvent(lineItem.Id, lineItem.OrderId));
         _lineItems.Add(lineItem);
 
         return lineItem;
