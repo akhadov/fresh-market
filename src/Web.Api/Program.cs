@@ -29,6 +29,8 @@ if (app.Environment.IsDevelopment())
 
 app.MapCategoryEndpoints();
 app.MapProductEndpoints();
+app.MapOrderEndpoints();
+app.MapCustomerEndpoints();
 app.UseHttpsRedirection();
 
 //app.UseAuthorization();
