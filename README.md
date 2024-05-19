@@ -1,6 +1,6 @@
 <p align="center">
 	<a>
-		<img src="assets/smartstore-icon-whitebg.png" alt="Smartstore" width="120">
+		<img src="assets/freshmarket.jpg" alt="Smartstore" width="120">
 	</a>
 </p>
 
