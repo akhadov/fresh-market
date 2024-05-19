@@ -1,3 +1,9 @@
+<p align="center">
+	<a>
+		<img src="assets/smartstore-icon-whitebg.png" alt="Smartstore" width="120">
+	</a>
+</p>
+
 ## .NET E-Commerce Reference Application - "Fresh Market"
 
 A reference .NET application implementing an eCommerce web site using a clean architecture.
