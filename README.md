@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="assets/freshmarket.jpg" alt="FreshMarket" width="120">
+	<img src="assets/freshmarket.png" alt="FreshMarket" width="120">
 </p>
 
 ## .NET E-Commerce Reference Application - "Fresh Market"
