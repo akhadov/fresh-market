@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Domain.Orders;
+﻿using Domain.Orders;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable

@@ -1,6 +1,5 @@
 ﻿using Domain.Customers;
 using Domain.Products;
-using SharedKernel;
 using SharedKernel.Base;
 
 namespace Domain.Orders;

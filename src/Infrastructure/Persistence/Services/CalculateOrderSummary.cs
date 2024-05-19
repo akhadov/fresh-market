@@ -1,11 +1,6 @@
 ﻿using Application.Orders.Commands.CreateOrder;
 using Domain.Orders;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence.Services;
 
@@ -46,7 +41,7 @@ internal sealed class CalculateOrderSummary : ICalculateOrderSummary
             .Select(g => new OrderSummary(
                 g.Key,
                 g.First().CustomerId,
-                g.First().CustomerName,
+                g.First().CustomerName.Value,
                 g.Sum(os => os.PriceAmount),
                 g.Select(os => new OrderSummary.LineItem(
                         os.LineItemId,

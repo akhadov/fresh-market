@@ -14,13 +14,17 @@ internal class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             customerId => customerId.Value,
             value => new CustomerId(value));
 
-        builder.Property(c => c.FirstName).HasMaxLength(100);
+        builder.ComplexProperty(
+            u => u.Email,
+            b => b.Property(e => e.Value).HasColumnName("email"));
 
-        builder.Property(c => c.LastName).HasMaxLength(100);
+        builder.ComplexProperty(
+            u => u.FirstName,
+            b => b.Property(e => e.Value).HasColumnName("firstName"));
 
-        builder.Property(c => c.Email).HasMaxLength(255);
-
-        builder.HasIndex(c => c.Email).IsUnique();
+        builder.ComplexProperty(
+            u => u.LastName,
+            b => b.Property(e => e.Value).HasColumnName("lastName"));
 
         builder.OwnsOne(c => c.Address);
     }
