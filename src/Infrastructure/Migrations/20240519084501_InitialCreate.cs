@@ -1,4 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using System.Collections.Generic;
+using Domain.Orders;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -43,6 +46,21 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_customers", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "order_summaries",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    customer_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    customer_first_name = table.Column<string>(type: "text", nullable: false),
+                    total_price = table.Column<decimal>(type: "numeric", nullable: false),
+                    line_items = table.Column<List<OrderSummary.LineItem>>(type: "jsonb", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_order_summaries", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,9 +121,6 @@ namespace Infrastructure.Migrations
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     customer_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    customer_id1 = table.Column<Guid>(type: "uuid", nullable: true),
-                    status = table.Column<int>(type: "integer", nullable: false),
-                    shipping_date = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     created_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     created_by = table.Column<string>(type: "text", nullable: true),
                     updated_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -120,11 +135,6 @@ namespace Infrastructure.Migrations
                         principalTable: "customers",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "fk_orders_customers_customer_id1",
-                        column: x => x.customer_id1,
-                        principalTable: "customers",
-                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -166,7 +176,6 @@ namespace Infrastructure.Migrations
                     product_id = table.Column<Guid>(type: "uuid", nullable: false),
                     price_currency = table.Column<string>(type: "text", nullable: false),
                     price_amount = table.Column<decimal>(type: "numeric", nullable: false),
-                    quantity = table.Column<int>(type: "integer", nullable: false),
                     created_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     created_by = table.Column<string>(type: "text", nullable: true),
                     updated_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -226,11 +235,6 @@ namespace Infrastructure.Migrations
                 column: "customer_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_orders_customer_id1",
-                table: "orders",
-                column: "customer_id1");
-
-            migrationBuilder.CreateIndex(
                 name: "ix_products_category_id",
                 table: "products",
                 column: "category_id");
@@ -244,6 +248,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "line_items");
+
+            migrationBuilder.DropTable(
+                name: "order_summaries");
 
             migrationBuilder.DropTable(
                 name: "blog_posts");

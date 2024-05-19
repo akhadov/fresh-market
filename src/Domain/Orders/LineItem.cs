@@ -5,38 +5,22 @@ namespace Domain.Orders;
 
 public class LineItem : AggregateRoot<LineItemId>
 {
-    public required OrderId OrderId { get; init; }
-
-    public required ProductId ProductId { get; init; }
-
-    public required Money Price { get; init; }
-
-    public int Quantity { get; private set; }
-
-    public Money Total => new(Price.Currency, Price.Amount * Quantity);
-
-    private LineItem() { }
-
-    internal static LineItem Create(OrderId orderId, ProductId productId, Money price, int quantity)
+    internal LineItem(LineItemId id, OrderId orderId, ProductId productId, Money price)
     {
-
-        var lineItem = new LineItem
-        {
-            Id = new LineItemId(Guid.NewGuid()),
-            OrderId = orderId,
-            ProductId = productId,
-            Price = price,
-            Quantity = quantity
-        };
-
-        return lineItem;
+        Id = id;
+        OrderId = orderId;
+        ProductId = productId;
+        Price = price;
     }
 
-    internal void AddQuantity(int quantity) => Quantity += quantity;
-
-    internal void RemoveQuantity(int quantity)
+    private LineItem()
     {
-        Quantity -= quantity;
     }
+    public OrderId OrderId { get; private set; }
+
+    public ProductId ProductId { get; private set; }
+
+    public Money Price { get; private set; }
+
 }
 

@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Orders\Commands\AddLineItem\" />
-    <Folder Include="Orders\Commands\CreateOrder\" />
     <Folder Include="Orders\Queries\" />
   </ItemGroup>
 

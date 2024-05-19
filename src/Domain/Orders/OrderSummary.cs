@@ -9,7 +9,7 @@ namespace Domain.Orders;
 public record OrderSummary(
     Guid Id,
     Guid CustomerId,
-    string CustomerName,
+    string CustomerFirstName,
     decimal TotalPrice,
     List<OrderSummary.LineItem> LineItems)
 {

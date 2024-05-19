@@ -9,16 +9,13 @@ public class Order : AggregateRoot<OrderId>
 {
     private readonly List<LineItem> _lineItems = new();
 
-    public IEnumerable<LineItem> LineItems => _lineItems.AsReadOnly();
+    private Order()
+    {
+    }
 
     public required CustomerId CustomerId { get; init; }
 
-    public OrderStatus Status { get; private set; }
-
-    public DateTimeOffset ShippingDate { get; private set; }
-
-
-    private Order() { }
+    public IReadOnlyList<LineItem> LineItems => _lineItems.ToList();
 
     public static Order Create(CustomerId customerId)
     {
@@ -26,7 +23,6 @@ public class Order : AggregateRoot<OrderId>
         {
             Id = new OrderId(Guid.NewGuid()),
             CustomerId = customerId,
-            Status = OrderStatus.PendingPayment
         };
 
         order.AddDomainEvent(OrderCreatedEvent.Create(order));
@@ -34,32 +30,39 @@ public class Order : AggregateRoot<OrderId>
         return order;
     }
 
-    public LineItem AddLineItem(ProductId productId, Money price, int quantity)
+    public void AddLineItem(ProductId productId, Money price)
     {
-        var lineItem = LineItem.Create(Id, productId, price, quantity);
-        AddDomainEvent(new LineItemAddedEvent(lineItem.Id, lineItem.OrderId));
+        var lineItem = new LineItem(
+            new LineItemId(Guid.NewGuid()),
+            Id,
+            productId,
+            price);
+
         _lineItems.Add(lineItem);
 
-        return lineItem;
+        lineItem.AddDomainEvent(LineItemAddedEvent.Create(lineItem));
     }
 
-    public void RemoveLineItem(ProductId productId)
+    public void RemoveLineItem(LineItemId lineItemId)
     {
-        var lineItem = _lineItems.RemoveAll(x => x.ProductId == productId);
+        if (HasOneLineItem())
+        {
+            return;
+        }
+
+        var lineItem = _lineItems.FirstOrDefault(li => li.Id == lineItemId);
+
+        if (lineItem is null)
+        {
+            return;
+        }
+
+        _lineItems.Remove(lineItem);
+
+        lineItem.AddDomainEvent(LineItemRemovedEvent.Remove(lineItemId, Id));
     }
 
+    private bool HasOneLineItem() => _lineItems.Count == 1;
 
-    public void AddQuantity(ProductId productId, int quantity) =>
-        _lineItems.FirstOrDefault(li => li.ProductId == productId)?.AddQuantity(quantity);
-
-    public void RemoveQuantity(ProductId productId, int quantity) =>
-        _lineItems.FirstOrDefault(li => li.ProductId == productId)?.RemoveQuantity(quantity);
-
-    public void ShipOrder(IDateTimeProvider dateTimeProvider)
-    {
-
-        ShippingDate = dateTimeProvider.UtcNow;
-        Status = OrderStatus.InTransit;
-    }
 }
 
