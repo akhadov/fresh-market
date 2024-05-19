@@ -35,8 +35,6 @@ You will need the following tools:
 
 * [Visual Studio or VS Code](https://visualstudio.microsoft.com/downloads/), or [Rider](https://www.jetbrains.com/rider/download/)
 * [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download)
-* [Node.js](https://nodejs.org/en/) version 20.10 LTS or later - Recommended to install using [nvm](https://github.com/nvm-sh/nvm) or [nvm for Windows](https://github.com/coreybutler/nvm-windows)
-* Angular CLI (version 17 or later) - install by running `npm install -g @angular/cli`
 
 ### Setup
 
@@ -55,30 +53,27 @@ Follow these steps to get your development environment set up:
 dotnet build
 ```
 
-5. Once the front end has started, within the `\Src\WebUI` directory, launch the back end by running:
+5. Launch the back end within the `\Src\WebApi` directory by running:
 
 ```bash
 dotnet run
 ```
-
-6. Launch [https://localhost:44427/](https://localhost:44427/) in your browser to view the Web UI
-
-7. Launch [https://localhost:44376/api](http://localhost:44376/api) in your browser to view the API
+6. Launch [https://localhost:44376/api](http://localhost:44376/api) in your browser to view the API
 
 ## Technologies
 
 * .NET 8
 * ASP.NET Core 8
+* ASP.NET MVC 
 * Entity Framework Core 8
-* Angular 15
 
 ### Other Packages
 
 * MediatR
 * FluentValidation
-* AutoMapper
-* Ardalis.Specification
-* Ardalis.GuardClauses
+* Serilog
+* OpenApi
+* Swashbuckle
 
 ### Testing Packages
 
@@ -89,12 +84,6 @@ dotnet run
 * Respawn
 * Bogus
 
-## Marketing
-
-Marketing site can be found at [northwind365.com](https://northwind365.com/) which is deployed
-from [Northwind365.Website](https://github.com/SSWConsulting/Northwind365.Website).
-
 ## License
 
-This project is licensed under the MIT License - see
-the [LICENSE.md](https://github.com/SSWConsulting/Northwind365/blob/main/LICENSE) file for details.
+This project is licensed under the MIT License.
