@@ -1,7 +1,3 @@
-<p align="center">
-	<img src="assets/freshmarket.png" alt="FreshMarket" width="120">
-</p>
-
 ## .NET E-Commerce Reference Application - "Fresh Market"
 
 A reference .NET application implementing an eCommerce web site using a clean architecture.
