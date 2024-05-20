@@ -2,7 +2,7 @@
 
 A reference .NET application implementing an eCommerce web site using a clean architecture.
 
-## ✨ Features
+##  Features
 
 - 🌐 Minimal Endpoints - because it's fast & simple. ⚡
 - 🔑 Global Exception Handling - it's important to handle exceptions in a consistent way & protect sensitive information
@@ -25,7 +25,7 @@ A reference .NET application implementing an eCommerce web site using a clean ar
 - Architecture Tests
     - The tests are automated so discovering the defects is fast
  
-## 🎉 Getting Started
+##  Getting Started
 
 Use these instructions to get the project up and running.
 
