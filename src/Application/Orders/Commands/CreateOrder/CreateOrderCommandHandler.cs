@@ -11,8 +11,21 @@ internal sealed class CreateOrderCommandHandler(
     IOrderRepository orderRepository,
     IUnitOfWork unitOfWork) : ICommandHandler<CreateOrderCommand>
 {
-    public Task<Result> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var customer = await customerRepository.GetByIdAsync(new CustomerId(request.CustomerId));
+
+        if (customer is null)
+        {
+            return Result.Failure<Guid>(CustomerErrors.NotFound(request.CustomerId));
+        }
+
+        var order = Order.Create(customer.Id);
+
+        await orderRepository.AddAsync(order);
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+
+        return Result.Success();
     }
 }

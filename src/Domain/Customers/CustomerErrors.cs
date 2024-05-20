@@ -4,7 +4,7 @@ namespace Domain.Customers;
 
 public static class CustomerErrors
 {
-    public static Error NotFound(CustomerId customerId) => Error.NotFound(
+    public static Error NotFound(Guid customerId) => Error.NotFound(
         "Customers.NotFound",
         $"The customer with the Id = '{customerId}' was not found");
 

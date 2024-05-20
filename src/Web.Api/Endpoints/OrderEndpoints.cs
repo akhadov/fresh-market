@@ -1,7 +1,4 @@
-﻿using MediatR;
-using SharedKernel;
-
-namespace Web.Api.Endpoints;
+﻿namespace Web.Api.Endpoints;
 
 public static class OrderEndpoints
 {
