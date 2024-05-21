@@ -29,7 +29,7 @@ public static class CategoryEnspoints
 
         });
 
-        routes.MapGet("api/users/{categoryId}", async (
+        routes.MapGet("api/categories/{categoryId}", async (
             Guid categoryId,
             ISender sender,
             CancellationToken cancellationToken) =>

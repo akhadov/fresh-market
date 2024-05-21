@@ -15,10 +15,10 @@ public sealed record Email
             return Result.Failure<Email>(EmailErrors.Empty);
         }
 
-        if (email.Split('@').Length != 2)
-        {
-            return Result.Failure<Email>(EmailErrors.InvalidFormat);
-        }
+        //if (email.Split('@').Length != 2)
+        //{
+        //    return Result.Failure<Email>(EmailErrors.InvalidFormat);
+        //}
 
         return new Email(email);
     }
