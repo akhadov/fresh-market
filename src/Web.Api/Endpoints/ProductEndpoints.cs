@@ -1,7 +1,9 @@
-﻿using Application.Products.Commands.CreateProduct;
+﻿using Application.Abstractions.Models;
+using Application.Products.Commands.CreateProduct;
 using Application.Products.Commands.DeleteProduct;
 using Application.Products.Commands.UpdateProduct;
 using Application.Products.Queries.GetById;
+using Application.Products.Queries.GetProducts;
 using Domain.Categories;
 using Domain.Products;
 using MediatR;
@@ -41,6 +43,19 @@ public static class ProductEndpoints
             var query = new GetProductByIdQuery(new ProductId(productId));
 
             Result<ProductResponse> result = await sender.Send(query, cancellationToken);
+
+            return result.Match(Results.Ok, CustomResults.Problem);
+        });
+
+        routes.MapGet("api/products", async (
+                int page,
+                int pageSize,
+                ISender sender,
+                CancellationToken cancellationToken) =>
+        {
+            var query = new GetProductsQuery(page, pageSize);
+
+            Result<PagedList<ProductResponse>> result = await sender.Send(query, cancellationToken);
 
             return result.Match(Results.Ok, CustomResults.Problem);
         });
