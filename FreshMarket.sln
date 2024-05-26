@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api", "src\Web.Api\Web.Api.csproj", "{3D94A8DD-068C-4752-A2BC-AAE1362313D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{6BD14587-F54F-4FDD-9D01-2BC8D2FA9237}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "src\Web\Web.csproj", "{6BD14587-F54F-4FDD-9D01-2BC8D2FA9237}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
