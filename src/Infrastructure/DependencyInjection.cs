@@ -1,4 +1,6 @@
 ﻿using Application.Abstractions.Data;
+using Application.Abstractions.FileStorage;
+using Application.Abstractions.Storage;
 using Domain.Blogs;
 using Domain.Categories;
 using Domain.Customers;
@@ -7,6 +9,7 @@ using Domain.Products;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Interceptors;
 using Infrastructure.Persistence.Repositories;
+using Infrastructure.Storage;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,6 +57,7 @@ public static class DependencyInjection
 
 
 
+        services.AddScoped<IStorageService, StorageService>();
         services.AddSingleton(TimeProvider.System);
 
         return services;

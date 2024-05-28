@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions.Data;
+using Application.Abstractions.FileStorage;
 using Application.Abstractions.Messaging;
 using Domain.Categories;
 using SharedKernel;
@@ -13,6 +14,7 @@ IUnitOfWork unitOfWork) : ICommandHandler<CreateCategoryCommand, Guid>
         CreateCategoryCommand request,
         CancellationToken cancellationToken)
     {
+
         var category = Category.Create(request.Name, request.ImagePath);
 
         await categoryRepository.AddAsync(category);
