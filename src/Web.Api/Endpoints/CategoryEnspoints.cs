@@ -20,7 +20,7 @@ public static class CategoryEnspoints
             ISender sender,
             CancellationToken cancellationToken) =>
         {
-            
+
             var command = new CreateCategoryCommand(
                 request.Name,
                 request.Image);

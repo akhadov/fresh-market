@@ -1,9 +1,5 @@
 ﻿using Application.Abstractions.Storage;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
 
 //internal sealed class StorageService : IStorageService
 //{
@@ -71,71 +67,137 @@ using System.Threading.Tasks;
 //}
 
 
-namespace Infrastructure.Storage
+//namespace Infrastructure.Storage
+//{
+//    internal sealed class StorageService : IStorageService
+//    {
+//        private readonly string _storagePath;
+
+//        public StorageService()
+//        {
+//            _storagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Uploads");
+//            if (!Directory.Exists(_storagePath))
+//            {
+//                Directory.CreateDirectory(_storagePath);
+//            }
+//        }
+
+//        public async Task<Guid> UploadAsync(IFormFile file, CancellationToken cancellationToken = default)
+//        {
+//            if (file == null || file.Length == 0)
+//            {
+//                throw new ArgumentException("File cannot be null or empty", nameof(file));
+//            }
+
+//            var fileId = Guid.NewGuid();
+//            var fileExtension = GetFileExtensionFromContentType(file.ContentType);
+//            var filePath = Path.Combine(_storagePath, $"{fileId}{fileExtension}");
+
+//            await SaveToFileAsync(file, filePath, cancellationToken);
+
+//            return fileId;
+//        }
+
+//        public async Task DeleteAsync(Guid fileId, CancellationToken cancellationToken = default)
+//        {
+//            var files = Directory.GetFiles(_storagePath, $"{fileId}.*");
+
+//            if (files.Length == 0)
+//            {
+//                throw new FileNotFoundException("File not found", fileId.ToString());
+//            }
+
+//            foreach (var file in files)
+//            {
+//                File.Delete(file);
+//            }
+
+//            await Task.CompletedTask;
+//        }
+
+//        private async Task SaveToFileAsync(IFormFile file, string filePath, CancellationToken cancellationToken)
+//        {
+//            using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+//            {
+//                await file.CopyToAsync(stream, cancellationToken);
+//            }
+//        }
+
+//        private string GetFileExtensionFromContentType(string contentType)
+//        {
+//            return contentType switch
+//            {
+//                "image/jpeg" => ".jpg",
+//                "image/png" => ".png",
+//                "image/gif" => ".gif",
+//                _ => ".bin",
+//            };
+//        }
+//    }
+//}
+
+internal sealed class StorageService : IStorageService
 {
-    internal sealed class StorageService : IStorageService
+    private readonly string _storagePath;
+
+    public StorageService()
     {
-        private readonly string _storagePath;
-
-        public StorageService()
+        _storagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Uploads");
+        if (!Directory.Exists(_storagePath))
         {
-            _storagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Uploads");
-            if (!Directory.Exists(_storagePath))
-            {
-                Directory.CreateDirectory(_storagePath);
-            }
+            Directory.CreateDirectory(_storagePath);
+        }
+    }
+
+    public async Task<string> UploadAsync(IFormFile file, CancellationToken cancellationToken = default)
+    {
+        if (file == null || file.Length == 0)
+        {
+            throw new ArgumentException("File cannot be null or empty", nameof(file));
         }
 
-        public async Task<Guid> UploadAsync(IFormFile file, CancellationToken cancellationToken = default)
+        var fileId = Guid.NewGuid();
+        var fileExtension = GetFileExtensionFromContentType(file.ContentType);
+        var filePath = Path.Combine(_storagePath, $"{fileId}{fileExtension}");
+
+        await SaveToFileAsync(file, filePath, cancellationToken);
+
+        return filePath;
+    }
+
+    public async Task DeleteAsync(Guid fileId, CancellationToken cancellationToken = default)
+    {
+        var files = Directory.GetFiles(_storagePath, $"{fileId}.*");
+
+        if (files.Length == 0)
         {
-            if (file == null || file.Length == 0)
-            {
-                throw new ArgumentException("File cannot be null or empty", nameof(file));
-            }
-
-            var fileId = Guid.NewGuid();
-            var fileExtension = GetFileExtensionFromContentType(file.ContentType);
-            var filePath = Path.Combine(_storagePath, $"{fileId}{fileExtension}");
-
-            await SaveToFileAsync(file, filePath, cancellationToken);
-
-            return fileId;
+            throw new FileNotFoundException("File not found", fileId.ToString());
         }
 
-        public async Task DeleteAsync(Guid fileId, CancellationToken cancellationToken = default)
+        foreach (var file in files)
         {
-            var files = Directory.GetFiles(_storagePath, $"{fileId}.*");
-
-            if (files.Length == 0)
-            {
-                throw new FileNotFoundException("File not found", fileId.ToString());
-            }
-
-            foreach (var file in files)
-            {
-                File.Delete(file);
-            }
-
-            await Task.CompletedTask;
+            File.Delete(file);
         }
 
-        private async Task SaveToFileAsync(IFormFile file, string filePath, CancellationToken cancellationToken)
-        {
-            using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
-            {
-                await file.CopyToAsync(stream, cancellationToken);
-            }
-        }
+        await Task.CompletedTask;
+    }
 
-        private string GetFileExtensionFromContentType(string contentType)
+    private async Task SaveToFileAsync(IFormFile file, string filePath, CancellationToken cancellationToken)
+    {
+        using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
         {
-            return contentType switch
-            {
-                "image/jpeg" => ".jpg",
-                "image/png" => ".png",
-                "image/gif" => ".gif",
-                _ => ".bin",
-            };
+            await file.CopyToAsync(stream, cancellationToken);
         }
+    }
+
+    private string GetFileExtensionFromContentType(string contentType)
+    {
+        return contentType switch
+        {
+            "image/jpeg" => ".jpg",
+            "image/png" => ".png",
+            "image/gif" => ".gif",
+            _ => ".bin",
+        };
     }
 }

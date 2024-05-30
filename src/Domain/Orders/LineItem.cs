@@ -5,14 +5,6 @@ namespace Domain.Orders;
 
 public class LineItem : AggregateRoot<LineItemId>
 {
-    internal LineItem(LineItemId id, OrderId orderId, ProductId productId, Money price)
-    {
-        Id = id;
-        OrderId = orderId;
-        ProductId = productId;
-        Price = price;
-    }
-
     private LineItem()
     {
     }
@@ -22,5 +14,15 @@ public class LineItem : AggregateRoot<LineItemId>
 
     public Money Price { get; private set; }
 
+    internal static LineItem Create(OrderId orderId, ProductId productId, Money price)
+    {
+        return new LineItem
+        {
+            Id = new LineItemId(Guid.NewGuid()),
+            OrderId = orderId,
+            ProductId = productId,
+            Price = price
+        };
+    }
 }
 

@@ -1,9 +1,9 @@
-using Serilog;
 using Application;
 using Infrastructure;
-using Web.Infrastructure;
+using Serilog;
 using Web;
 using Web.Extensions;
+using Web.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

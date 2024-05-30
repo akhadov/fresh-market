@@ -29,17 +29,15 @@ public class Order : AggregateRoot<OrderId>
         return order;
     }
 
-    public void AddLineItem(ProductId productId, Money price)
+    public LineItem AddLineItem(ProductId productId, Money price)
     {
-        var lineItem = new LineItem(
-            new LineItemId(Guid.NewGuid()),
-            Id,
-            productId,
-            price);
+        var lineItem = LineItem.Create(Id, productId, price);
+
+        lineItem.AddDomainEvent(LineItemAddedEvent.Create(lineItem));
 
         _lineItems.Add(lineItem);
 
-        lineItem.AddDomainEvent(LineItemAddedEvent.Create(lineItem));
+        return lineItem;
     }
 
     public void RemoveLineItem(LineItemId lineItemId)

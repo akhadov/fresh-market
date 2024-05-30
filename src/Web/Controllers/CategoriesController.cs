@@ -1,11 +1,5 @@
-﻿using Application.Categories.Queries.GetById;
-using Domain.Categories;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SharedKernel;
-using System.Threading;
-using Web.Extensions;
-using Web.Infrastructure;
 
 namespace Web.Controllers;
 

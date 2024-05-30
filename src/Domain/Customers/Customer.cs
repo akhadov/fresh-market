@@ -4,7 +4,7 @@ namespace Domain.Customers;
 
 public class Customer : AggregateRoot<CustomerId>
 {
-    public Customer(CustomerId id, Email email, FirstName firstName, LastName lastName, Address? address)
+    private Customer(CustomerId id, Email email, FirstName firstName, LastName lastName, Address? address)
     {
         Id = id;
         Email = email;

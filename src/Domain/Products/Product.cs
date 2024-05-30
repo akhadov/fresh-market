@@ -32,19 +32,11 @@ public class Product : AggregateRoot<ProductId>
         return product;
     }
 
-    public void UpdateName(string name)
+    public void Update(string name, Money price, Sku sku)
     {
         Name = name;
-    }
-
-    public void UpdatePrice(Money price)
-    {
-
         Price = price;
-    }
-
-    public void UpdateSku(Sku sku)
-    {
         Sku = sku;
     }
+
 }

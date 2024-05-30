@@ -18,11 +18,10 @@ internal sealed class UpdateProductCommandHandler(
             return Result.Failure<Guid>(ProductErrors.NotFound(request.ProductId));
         }
 
-        product.UpdateName(request.Name);
-
-        product.UpdatePrice(new Money(request.Currency, request.Amount));
-
-        product.UpdateSku(Sku.Create(request.Sku)!);
+        product.Update(
+            request.Name,
+            new Money(request.Currency, request.Amount),
+            Sku.Create(request.Sku)!);
 
         await productRepository.UpdateAsync(product);
 

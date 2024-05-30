@@ -7,6 +7,7 @@ using Application.Products.Queries.GetProducts;
 using Domain.Categories;
 using Domain.Products;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
 using Web.Api.Extensions;
 using Web.Api.Infrastructure;
@@ -62,7 +63,7 @@ public static class ProductEndpoints
 
         routes.MapPut("api/products/{productId}", async (
             Guid productId,
-            UpdateProductRequest request,
+            [FromBody] UpdateProductRequest request,
             ISender sender,
             CancellationToken cancellationToken) =>
         {

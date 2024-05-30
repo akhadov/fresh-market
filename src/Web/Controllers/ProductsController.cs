@@ -4,7 +4,6 @@ using Application.Products.Queries.GetProducts;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
-using Web.Extensions;
 
 namespace Web.Controllers;
 
