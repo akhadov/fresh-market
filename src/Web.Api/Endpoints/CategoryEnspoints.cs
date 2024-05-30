@@ -4,6 +4,7 @@ using Application.Categories.Commands.UpdateCategory;
 using Application.Categories.Queries.GetById;
 using Domain.Categories;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
 using Web.Api.Extensions;
 using Web.Api.Infrastructure;
@@ -15,13 +16,14 @@ public static class CategoryEnspoints
     public static void MapCategoryEndpoints(this IEndpointRouteBuilder routes)
     {
         routes.MapPost("api/categories", async (
-            CreateCategoryRequest request,
+            [FromForm] CreateCategoryRequest request,
             ISender sender,
             CancellationToken cancellationToken) =>
         {
+            
             var command = new CreateCategoryCommand(
                 request.Name,
-                request.ImagePath);
+                request.Image);
 
             Result<Guid> result = await sender.Send(command, cancellationToken);
 

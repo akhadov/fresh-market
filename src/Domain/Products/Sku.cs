@@ -1,5 +1,6 @@
 ﻿namespace Domain.Products;
 
+// Stock Keeping Unit
 public record Sku
 {
     private const int DefaultLenght = 8;

@@ -1,3 +1,5 @@
-﻿namespace Application.Categories.Commands.CreateCategory;
+﻿using Microsoft.AspNetCore.Http;
 
-public sealed record CreateCategoryRequest(string Name, string ImagePath);
+namespace Application.Categories.Commands.CreateCategory;
+
+public sealed record CreateCategoryRequest(string Name, IFormFile Image);
