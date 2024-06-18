@@ -11,14 +11,14 @@ internal sealed class RemoveLineItemCommandHandler(
 {
     public async Task<Result> Handle(RemoveLineItemCommand request, CancellationToken cancellationToken)
     {
-        var order = await orderRepository.GetByIdAsync(request.OrderId);
+        var order = await orderRepository.GetByIdAsync(new OrderId(request.OrderId), cancellationToken);
 
         if (order is null)
         {
             return Result.Failure(OrderErrors.NotFound(request.OrderId));
         }
 
-        order.RemoveLineItem(request.LineItemId);
+        order.RemoveLineItem(new LineItemId(request.LineItemId));
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

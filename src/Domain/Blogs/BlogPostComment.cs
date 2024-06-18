@@ -3,6 +3,7 @@ using SharedKernel.Base;
 
 namespace Domain.Blogs;
 
+public record BlogPostCommentId(Guid Value);
 public class BlogPostComment : AggregateRoot<BlogPostCommentId>
 {
     public CustomerId CustomerId { get; private set; }

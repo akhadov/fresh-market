@@ -2,7 +2,7 @@
 
 namespace SharedKernel.Base;
 
-public abstract class AuditableEntity : IAuditableEntity
+public abstract class AuditableEntity : IAuditable
 {
     public DateTimeOffset CreatedAt { get; private set; }
     public string? CreatedBy { get; private set; }

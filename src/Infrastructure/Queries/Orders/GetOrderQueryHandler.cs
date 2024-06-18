@@ -27,7 +27,7 @@ internal sealed class GetOrderQueryHandler(ApplicationDbContext context)
 
         if (orderResponse is null)
         {
-            return Result.Failure<OrderResponse>(OrderErrors.NotFound(orderId));
+            return Result.Failure<OrderResponse>(OrderErrors.NotFound(request.OrderId));
         }
 
         return orderResponse;

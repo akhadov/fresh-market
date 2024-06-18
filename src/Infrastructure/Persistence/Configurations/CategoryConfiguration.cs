@@ -18,5 +18,6 @@ internal sealed class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .HasMaxLength(50);
 
         builder.Property(p => p.ImagePath);
+
     }
 }

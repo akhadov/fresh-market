@@ -1,5 +1,3 @@
 ﻿namespace SharedKernel.Interfaces;
 
-public interface IValueObject
-{
-}
+public interface IValueObject;

@@ -9,7 +9,7 @@ internal sealed class GetProductByIdQueryHandler(
 {
     public async Task<Result<ProductResponse>> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
-        var product = await productRepository.GetByIdAsync(request.ProductId);
+        var product = await productRepository.GetByIdAsync(new ProductId(request.ProductId), cancellationToken);
 
         if (product is null)
         {
@@ -18,7 +18,7 @@ internal sealed class GetProductByIdQueryHandler(
 
         var productResponse = new ProductResponse
         {
-            Id = product.Id,
+            Id = product.Id.Value,
             Name = product.Name,
             Sku = product.Sku.Value,
             Currency = product.Price.Currency,

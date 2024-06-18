@@ -13,14 +13,14 @@ internal sealed class AddLineItemCommandHandler(
 {
     public async Task<Result> Handle(AddLineItemCommand request, CancellationToken cancellationToken)
     {
-        var order = await orderRepository.GetByIdAsync(request.OrderId);
+        var order = await orderRepository.GetByIdAsync(new OrderId(request.OrderId), cancellationToken);
 
         if (order is null)
         {
             return Result.Failure(OrderErrors.NotFound(request.OrderId));
         }
 
-        var product = await productRepository.GetByIdAsync(request.ProductId);
+        var product = await productRepository.GetByIdAsync(new ProductId(request.ProductId), cancellationToken);
 
         if (product is null)
         {

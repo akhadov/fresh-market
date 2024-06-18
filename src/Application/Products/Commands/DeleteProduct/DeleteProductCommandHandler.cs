@@ -11,14 +11,14 @@ internal sealed class DeleteProductCommandHandler(
 {
     public async Task<Result> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
-        var product = await productRepository.GetByIdAsync(request.ProductId);
+        var product = await productRepository.GetByIdAsync(new ProductId(request.ProductId), cancellationToken);
 
         if (product is null)
         {
             return Result.Failure(ProductErrors.NotFound(request.ProductId));
         }
 
-        await productRepository.RemoveAsync(product);
+        await productRepository.RemoveAsync(product, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

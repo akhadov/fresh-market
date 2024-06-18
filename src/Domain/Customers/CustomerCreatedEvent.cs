@@ -2,8 +2,4 @@
 
 namespace Domain.Customers;
 
-public record CustomerCreatedEvent(CustomerId CustomerId) : DomainEvent
-{
-    public static CustomerCreatedEvent Create(Customer customer) =>
-        new(customer.Id);
-}
+public record CustomerCreatedEvent(Customer Customer) : DomainEvent;

@@ -8,19 +8,25 @@ namespace Application.Products.Commands.CreateProduct;
 
 internal sealed class CreateProductCommandHandler(
     IProductRepository productRepository,
+    ICategoryRepository categoryRepository,
     IUnitOfWork unitOfWork) : ICommandHandler<CreateProductCommand, Guid>
 {
     public async Task<Result<Guid>> Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
-        var categoryId = new CategoryId(request.CategoryId);
+        var category = await categoryRepository.GetByIdAsync(new CategoryId(request.CategoryId), cancellationToken);
+
+        if (category is null)
+        {
+            return Result.Failure<Guid>(CategoryErrors.NotFound(request.CategoryId));
+        }
 
         var price = new Money(request.Currency, request.Amount);
 
         var sku = Sku.Create(request.Sku);
 
-        var product = Product.Create(request.Name, price, sku!, categoryId);
+        var product = Product.Create(request.Name, price, sku!, category.Id);
 
-        await productRepository.AddAsync(product);
+        await productRepository.AddAsync(product, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

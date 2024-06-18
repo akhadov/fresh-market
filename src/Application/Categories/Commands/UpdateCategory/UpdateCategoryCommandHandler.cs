@@ -13,18 +13,16 @@ internal sealed class UpdateCategoryCommandHandler(
 
     async Task<Result<Guid>> IRequestHandler<UpdateCategoryCommand, Result<Guid>>.Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = await categoryRepository.GetByIdAsync(request.CategoryId);
+        var category = await categoryRepository.GetByIdAsync(new CategoryId(request.CategoryId), cancellationToken);
 
         if (category is null)
         {
             return Result.Failure<Guid>(CategoryErrors.NotFound(request.CategoryId));
         }
 
-        category.UpdateName(request.Name);
+        category.Update(request.Name, request.ImagePath);
 
-        category.UpdateImagePath(request.ImagePath);
-
-        await categoryRepository.UpdateAsync(category);
+        await categoryRepository.UpdateAsync(category, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

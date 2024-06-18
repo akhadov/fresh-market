@@ -3,6 +3,8 @@ using SharedKernel.Base;
 
 namespace Domain.Products;
 
+public record ProductId(Guid Value);
+
 public class Product : AggregateRoot<ProductId>
 {
     public CategoryId CategoryId { get; private set; }
@@ -27,16 +29,16 @@ public class Product : AggregateRoot<ProductId>
             Sku = sku
         };
 
-        product.AddDomainEvent(ProductCreatedEvent.Create(product));
+        product.AddDomainEvent(new ProductCreatedEvent(product));
 
         return product;
     }
 
-    public void Update(string name, Money price, Sku sku)
+    public void Update(CategoryId categoryId, string name, Money price, Sku sku)
     {
+        CategoryId = categoryId;
         Name = name;
         Price = price;
         Sku = sku;
     }
-
 }

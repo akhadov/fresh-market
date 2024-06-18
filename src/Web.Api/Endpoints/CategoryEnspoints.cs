@@ -2,9 +2,7 @@
 using Application.Categories.Commands.DeleteCategory;
 using Application.Categories.Commands.UpdateCategory;
 using Application.Categories.Queries.GetById;
-using Domain.Categories;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
 using Web.Api.Extensions;
 using Web.Api.Infrastructure;
@@ -16,14 +14,14 @@ public static class CategoryEnspoints
     public static void MapCategoryEndpoints(this IEndpointRouteBuilder routes)
     {
         routes.MapPost("api/categories", async (
-            [FromForm] CreateCategoryRequest request,
+            CreateCategoryRequest request,
             ISender sender,
             CancellationToken cancellationToken) =>
         {
 
             var command = new CreateCategoryCommand(
                 request.Name,
-                request.Image);
+                request.ImagePath);
 
             Result<Guid> result = await sender.Send(command, cancellationToken);
 
@@ -36,7 +34,7 @@ public static class CategoryEnspoints
             ISender sender,
             CancellationToken cancellationToken) =>
         {
-            var query = new GetCategoryByIdQuery(new CategoryId(categoryId));
+            var query = new GetCategoryByIdQuery(categoryId);
 
             Result<CategoryResponse> result = await sender.Send(query, cancellationToken);
 
@@ -50,7 +48,7 @@ public static class CategoryEnspoints
                 CancellationToken cancellationToken) =>
         {
             var command = new UpdateCategoryCommand(
-                new CategoryId(categoryId),
+                categoryId,
                 request.Name,
                 request.ImagePath);
 
@@ -60,11 +58,11 @@ public static class CategoryEnspoints
         });
 
         routes.MapDelete("api/categories/{categoryId}", async (
-                Guid categoryId, // Change the parameter type to Guid
+                Guid categoryId,
                 ISender sender,
                 CancellationToken cancellationToken) =>
         {
-            var query = new DeleteCategoryCommand(new CategoryId(categoryId)); // Ensure categoryId is of type Guid
+            var query = new DeleteCategoryCommand(categoryId);
 
             Result result = await sender.Send(query, cancellationToken);
 

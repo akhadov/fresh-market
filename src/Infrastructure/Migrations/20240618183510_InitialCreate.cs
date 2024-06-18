@@ -1,4 +1,6 @@
-﻿using Domain.Orders;
+﻿using System;
+using System.Collections.Generic;
+using Domain.Orders;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -33,9 +35,9 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
-                    email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    first_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    last_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    email = table.Column<string>(type: "text", nullable: false),
+                    firstName = table.Column<string>(type: "text", nullable: false),
+                    lastName = table.Column<string>(type: "text", nullable: false),
                     created_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     created_by = table.Column<string>(type: "text", nullable: true),
                     updated_at = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
@@ -210,12 +212,6 @@ namespace Infrastructure.Migrations
                 name: "ix_blog_posts_customer_id",
                 table: "blog_posts",
                 column: "customer_id");
-
-            migrationBuilder.CreateIndex(
-                name: "ix_customers_email",
-                table: "customers",
-                column: "email",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "ix_line_items_order_id",

@@ -2,6 +2,8 @@
 
 namespace Domain.Categories;
 
+public record CategoryId(Guid Value);
+
 public class Category : AggregateRoot<CategoryId>
 {
     public string Name { get; private set; } = default!;
@@ -19,22 +21,14 @@ public class Category : AggregateRoot<CategoryId>
             ImagePath = imagePath
         };
 
-        category.UpdateName(name);
-
-        category.UpdateImagePath(imagePath);
-
-        category.AddDomainEvent(CategoryCreatedEvent.Create(category));
+        category.AddDomainEvent(new CategoryCreatedEvent(category));
 
         return category;
     }
 
-    public void UpdateName(string name)
+    public void Update(string name, string imagePath)
     {
         Name = name;
-    }
-
-    public void UpdateImagePath(string imagePath)
-    {
         ImagePath = imagePath;
     }
 }

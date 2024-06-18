@@ -2,8 +2,6 @@
 using Application.Orders.Commands.CreateOrder;
 using Application.Orders.Commands.RemoveLineItem;
 using Application.Orders.Queries.GetOrder;
-using Domain.Orders;
-using Domain.Products;
 using MediatR;
 using SharedKernel;
 using Web.Api.Extensions;
@@ -34,8 +32,8 @@ public static class OrderEndpoints
             CancellationToken cancellationToken) =>
         {
             var command = new AddLineItemCommand(
-                new OrderId(orderId),
-                new ProductId(request.ProductId),
+                orderId,
+                request.ProductId,
                 request.Currency,
                 request.Amount);
 
@@ -63,8 +61,8 @@ public static class OrderEndpoints
             CancellationToken cancellationToken) =>
         {
             var command = new RemoveLineItemCommand(
-                new OrderId(orderId),
-                new LineItemId(lineItemId));
+                orderId,
+                lineItemId);
 
             Result result = await sender.Send(command, cancellationToken);
 

@@ -4,10 +4,9 @@ namespace Infrastructure.Persistence.Repositories;
 
 public class ProductRepository : Repository<Product, ProductId>, IProductRepository
 {
-    private readonly ApplicationDbContext context;
-
     public ProductRepository(ApplicationDbContext context) : base(context)
     {
-        this.context = context;
     }
+
+    // Add any additional methods specific to ProductRepository if needed
 }

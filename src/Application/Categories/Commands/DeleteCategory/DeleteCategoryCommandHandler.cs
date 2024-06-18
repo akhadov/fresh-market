@@ -11,14 +11,14 @@ internal sealed class DeleteCategoryCommandHandler(
 {
     public async Task<Result> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = await categoryRepository.GetByIdAsync(request.CategoryId);
+        var category = await categoryRepository.GetByIdAsync(new CategoryId(request.CategoryId), cancellationToken);
 
         if (category is null)
         {
             return Result.Failure(CategoryErrors.NotFound(request.CategoryId));
         }
 
-        await categoryRepository.RemoveAsync(category);
+        await categoryRepository.RemoveAsync(category, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

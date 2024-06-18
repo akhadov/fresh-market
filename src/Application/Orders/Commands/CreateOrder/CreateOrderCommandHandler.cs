@@ -22,7 +22,7 @@ internal sealed class CreateOrderCommandHandler(
 
         var order = Order.Create(customer.Id);
 
-        await orderRepository.AddAsync(order);
+        await orderRepository.AddAsync(order, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

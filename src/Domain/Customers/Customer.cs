@@ -2,6 +2,8 @@
 
 namespace Domain.Customers;
 
+public record CustomerId(Guid Value);
+
 public class Customer : AggregateRoot<CustomerId>
 {
     private Customer(CustomerId id, Email email, FirstName firstName, LastName lastName, Address? address)
@@ -29,9 +31,7 @@ public class Customer : AggregateRoot<CustomerId>
 
         var customer = new Customer { Id = new CustomerId(Guid.NewGuid()), Email = email, FirstName = firstName, LastName = lastName };
 
-        customer.UpdateName(firstName, lastName);
-
-        customer.AddDomainEvent(CustomerCreatedEvent.Create(customer));
+        customer.AddDomainEvent(new CustomerCreatedEvent(customer));
 
         return customer;
     }

@@ -1,10 +1,8 @@
-﻿using Domain.Products;
-
-namespace Application.Products.Queries.GetById;
+﻿namespace Application.Products.Queries.GetById;
 
 public record ProductResponse
 {
-    public ProductId Id { get; init; }
+    public Guid Id { get; init; }
     public string Name { get; init; }
     public string Sku { get; init; }
     public string Currency { get; init; }

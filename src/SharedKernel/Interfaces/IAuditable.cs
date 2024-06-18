@@ -1,6 +1,6 @@
 ﻿namespace SharedKernel.Interfaces;
 
-public interface IAuditableEntity
+public interface IAuditable
 {
     public DateTimeOffset CreatedAt { get; }
     public string? CreatedBy { get; }

@@ -3,6 +3,8 @@ using SharedKernel.Base;
 
 namespace Domain.Orders;
 
+public readonly record struct LineItemId(Guid Value);
+
 public class LineItem : AggregateRoot<LineItemId>
 {
     private LineItem()
@@ -25,4 +27,3 @@ public class LineItem : AggregateRoot<LineItemId>
         };
     }
 }
-

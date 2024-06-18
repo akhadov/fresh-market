@@ -1,5 +1,4 @@
 ﻿using Application.Abstractions.Data;
-using Application.Abstractions.Storage;
 using Domain.Blogs;
 using Domain.Categories;
 using Domain.Customers;
@@ -55,7 +54,6 @@ public static class DependencyInjection
 
 
 
-        services.AddScoped<IStorageService, StorageService>();
         services.AddSingleton(TimeProvider.System);
 
         return services;

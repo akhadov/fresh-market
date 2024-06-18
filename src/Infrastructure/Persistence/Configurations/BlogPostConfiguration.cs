@@ -22,6 +22,5 @@ internal sealed class BlogPostConfiguration : IEntityTypeConfiguration<BlogPost>
         builder.HasMany(x => x.BlogPostComments)
             .WithOne()
             .HasForeignKey(x => x.BlogPostId);
-
     }
 }

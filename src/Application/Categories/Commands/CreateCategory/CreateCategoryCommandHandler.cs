@@ -1,6 +1,5 @@
 ﻿using Application.Abstractions.Data;
 using Application.Abstractions.Messaging;
-using Application.Abstractions.Storage;
 using Domain.Categories;
 using SharedKernel;
 
@@ -8,18 +7,16 @@ namespace Application.Categories.Commands.CreateCategory;
 
 internal sealed class CreateCategoryCommandHandler(
 ICategoryRepository categoryRepository,
-IStorageService file,
 IUnitOfWork unitOfWork) : ICommandHandler<CreateCategoryCommand, Guid>
 {
     public async Task<Result<Guid>> Handle(
         CreateCategoryCommand request,
         CancellationToken cancellationToken)
     {
-        var imagePath = await file.UploadAsync(request.Image);
 
-        var category = Category.Create(request.Name, imagePath);
+        var category = Category.Create(request.Name, request.ImagePath);
 
-        await categoryRepository.AddAsync(category);
+        await categoryRepository.AddAsync(category, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

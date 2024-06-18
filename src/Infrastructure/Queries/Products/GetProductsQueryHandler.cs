@@ -15,7 +15,7 @@ internal sealed class GetProductsQueryHandler(ApplicationDbContext context)
         IQueryable<ProductResponse> productsQuery = context.Products
                 .Select(p => new ProductResponse
                 {
-                    Id = p.Id,
+                    Id = p.Id.Value,
                     Name = p.Name,
                     Sku = p.Sku.Value,
                     Currency = p.Price.Currency,

@@ -9,7 +9,7 @@ internal sealed class GetCategoryByIdQueryHandler(
 {
     public async Task<Result<CategoryResponse>> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
     {
-        var category = await categoryRepository.GetByIdAsync(request.CategoryId);
+        var category = await categoryRepository.GetByIdAsync(new CategoryId(request.CategoryId), cancellationToken);
 
         if (category is null)
         {
@@ -18,7 +18,7 @@ internal sealed class GetCategoryByIdQueryHandler(
 
         var categoryResponse = new CategoryResponse
         {
-            CategoryId = category.Id,
+            Id = category.Id.Value,
             Name = category.Name,
             ImagePath = category.ImagePath
         };

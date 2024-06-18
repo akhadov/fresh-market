@@ -27,7 +27,7 @@ internal sealed class CreateCustomerCommandHandler(
         var lastName = new LastName(request.LastName);
         var customer = Customer.Create(email, firstName, lastName);
 
-        await customerRepository.AddAsync(customer);
+        await customerRepository.AddAsync(customer, cancellationToken);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

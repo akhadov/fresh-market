@@ -4,6 +4,8 @@ using SharedKernel.Base;
 
 namespace Domain.Orders;
 
+public record OrderId(Guid Value);
+
 public class Order : AggregateRoot<OrderId>
 {
     private readonly List<LineItem> _lineItems = new();
@@ -12,7 +14,7 @@ public class Order : AggregateRoot<OrderId>
     {
     }
 
-    public required CustomerId CustomerId { get; init; }
+    public CustomerId CustomerId { get; private set; }
 
     public IReadOnlyList<LineItem> LineItems => _lineItems.ToList();
 
@@ -62,4 +64,3 @@ public class Order : AggregateRoot<OrderId>
     private bool HasOneLineItem() => _lineItems.Count == 1;
 
 }
-

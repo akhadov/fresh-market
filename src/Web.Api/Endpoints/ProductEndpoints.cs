@@ -4,10 +4,7 @@ using Application.Products.Commands.DeleteProduct;
 using Application.Products.Commands.UpdateProduct;
 using Application.Products.Queries.GetById;
 using Application.Products.Queries.GetProducts;
-using Domain.Categories;
-using Domain.Products;
 using MediatR;
-using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
 using Web.Api.Extensions;
 using Web.Api.Infrastructure;
@@ -41,7 +38,7 @@ public static class ProductEndpoints
             ISender sender,
             CancellationToken cancellationToken) =>
         {
-            var query = new GetProductByIdQuery(new ProductId(productId));
+            var query = new GetProductByIdQuery(productId);
 
             Result<ProductResponse> result = await sender.Send(query, cancellationToken);
 
@@ -63,13 +60,13 @@ public static class ProductEndpoints
 
         routes.MapPut("api/products/{productId}", async (
             Guid productId,
-            [FromBody] UpdateProductRequest request,
+            UpdateProductRequest request,
             ISender sender,
             CancellationToken cancellationToken) =>
         {
             var command = new UpdateProductCommand(
-                new ProductId(productId),
-                new CategoryId(request.CategoryId),
+                productId,
+                request.CategoryId,
                 request.Name,
                 request.Sku,
                 request.Amount,
@@ -86,7 +83,7 @@ public static class ProductEndpoints
             ISender sender,
             CancellationToken cancellationToken) =>
         {
-            var query = new DeleteProductCommand(new ProductId(productId));
+            var query = new DeleteProductCommand(productId);
 
             Result result = await sender.Send(query, cancellationToken);
 
