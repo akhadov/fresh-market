@@ -75,15 +75,3 @@ dotnet run
 * OpenApi
 * Swashbuckle
 
-### Testing Packages
-
-* xUnit
-* NSubstitute
-* TestContainers
-* Fluent Assertions
-* Respawn
-* Bogus
-
-## License
-
-This project is licensed under the MIT License.
